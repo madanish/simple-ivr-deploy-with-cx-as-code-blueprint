@@ -1,5 +1,5 @@
 inboundCall:
-  name: SimpleFinancialIvrMat
+  name: SimpleFinancialIvrmat
   description: SimpleFinancialIvr
   division: Home
   startUpRef: "/inboundCall/menus/menu[Main Menu_10]"
@@ -113,13 +113,13 @@ inboundCall:
               globalDtmf: false
               globalSpeechRecTerms: false
           - menuTransferToAcd:
-              name: SimpleFinancial401K
+              name: SimpleFinancial401K mat
               dtmf: digit_1
               globalDtmf: false
               globalSpeechRecTerms: false
               targetQueue:
                 lit:
-                  name: Simple Financial 401K queue
+                  name: Simple Financial 401K queue mat
               preTransferAudio:
                 tts: We will transfer you to a 401K specialist shortly
               failureTransferAudio:
@@ -136,13 +136,13 @@ inboundCall:
                 errorMessage:
                   noValue: true
           - menuTransferToAcd:
-              name: SimpleFinancialIRA
+              name: SimpleFinancialIRA mat
               dtmf: digit_2
               globalDtmf: false
               globalSpeechRecTerms: false
               targetQueue:
                 lit:
-                  name: Simple Financial IRA queue
+                  name: Simple Financial IRA queue mat
               preTransferAudio:
                 tts: We will transfer you to a 401K specialist shortly
               failureTransferAudio:

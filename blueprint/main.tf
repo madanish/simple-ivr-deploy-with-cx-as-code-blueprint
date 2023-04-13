@@ -15,7 +15,7 @@ data "genesyscloud_user" "mattydonuts" {
 }
 
 resource "genesyscloud_routing_queue" "queue_ira" {
-  name                     = "Simple Financial IRA queue"
+  name                     = "Simple Financial IRA queue mat"
   description              = "Simple Financial IRA questions and answers"
   acw_wrapup_prompt        = "MANDATORY_TIMEOUT"
   acw_timeout_ms           = 300000
@@ -31,7 +31,7 @@ resource "genesyscloud_routing_queue" "queue_ira" {
 }
 
 resource "genesyscloud_routing_queue" "queue_K401" {
-  name                     = "Simple Financial 401K queue"
+  name                     = "Simple Financial 401K queue mat"
   description              = "Simple Financial 401K questions and answers"
   acw_wrapup_prompt        = "MANDATORY_TIMEOUT"
   acw_timeout_ms           = 300000
@@ -46,8 +46,8 @@ resource "genesyscloud_routing_queue" "queue_K401" {
 }
 
 resource "genesyscloud_flow" "mysimpleflow" {
-  filepath = "./SimpleFinancialIvr_v2-0.yaml"
-  file_content_hash = filesha256("./SimpleFinancialIvr_v2-0.yaml") 
+  filepath = "./SimpleFinancialIvrmat_v2-0.yaml"
+  file_content_hash = filesha256("./SimpleFinancialIvrmat_v2-0.yaml") 
 }
 
 
@@ -59,7 +59,7 @@ resource "genesyscloud_telephony_providers_edges_did_pool" "mygcv_number" {
 }
 
 resource "genesyscloud_architect_ivr" "mysimple_ivr" {
-  name               = "A simple IVR"
+  name               = "A simple IVR1"
   description        = "A sample IVR configuration"
   dnis               = ["+19205422725", "+19205422725"]
   open_hours_flow_id = genesyscloud_flow.mysimpleflow.id
