@@ -10,52 +10,8 @@ provider "genesyscloud" {
   sdk_debug = true
 }
 
-resource "genesyscloud_user" "sf_johnsmith" {
-  email           = "john.smith@simplefinancial.com"
-  name            = "John Smith"
-  password        = "b@Zinga1972"
-  state           = "active"
-  department      = "IRA"
-  title           = "Agent"
-  acd_auto_answer = true
-  addresses {
-
-    phone_numbers {
-      number     = "9205551212"
-      media_type = "PHONE"
-      type       = "MOBILE"
-    }
-  }
-  employer_info {
-    official_name = "John Smith"
-    employee_id   = "12345"
-    employee_type = "Full-time"
-    date_hire     = "2021-03-18"
-  }
-}
-
-resource "genesyscloud_user" "sf_janesmith" {
-  email           = "jane.smith@simplefinancial.com"
-  name            = "Jane Smith"
-  password        = "b@Zinga1972"
-  state           = "active"
-  department      = "IRA"
-  title           = "Agent"
-  acd_auto_answer = true
-  addresses {
-
-    phone_numbers {
-      number     = "9205551212"
-      media_type = "PHONE"
-      type       = "MOBILE"
-    }
-  }
-  employer_info {
-    official_name = "Jane Smith"
-    employee_id   = "67890"
-    employee_type = "Full-time"
-    date_hire     = "2021-03-18"
-  }
+data "genesyscloud_user" "mattydonuts" {
+  email = "mathew.danish@genesys.com"
 }
 
 resource "genesyscloud_routing_queue" "queue_ira" {
@@ -69,7 +25,7 @@ resource "genesyscloud_routing_queue" "queue_ira" {
   enable_manual_assignment = true
 
   members {
-    user_id  = genesyscloud_user.sf_johnsmith.id
+    user_id  = data.genesyscloud_user.mattydonuts.id
     ring_num = 1
   }
 }
@@ -84,12 +40,7 @@ resource "genesyscloud_routing_queue" "queue_K401" {
   enable_transcription     = true
   enable_manual_assignment = true
   members {
-    user_id  = genesyscloud_user.sf_johnsmith.id
-    ring_num = 1
-  }
-
-  members {
-    user_id  = genesyscloud_user.sf_janesmith.id
+    user_id  = data.genesyscloud_user.mattydonuts.id
     ring_num = 1
   }
 }
@@ -101,8 +52,8 @@ resource "genesyscloud_flow" "mysimpleflow" {
 
 
 resource "genesyscloud_telephony_providers_edges_did_pool" "mygcv_number" {
-  start_phone_number = "+19205422729"
-  end_phone_number   = "+19205422729"
+  start_phone_number = "+19205422725"
+  end_phone_number   = "+19205422725"
   description        = "GCV Number for inbound calls"
   comments           = "Additional comments"
 }
@@ -110,7 +61,7 @@ resource "genesyscloud_telephony_providers_edges_did_pool" "mygcv_number" {
 resource "genesyscloud_architect_ivr" "mysimple_ivr" {
   name               = "A simple IVR"
   description        = "A sample IVR configuration"
-  dnis               = ["+19205422729", "+19205422729"]
+  dnis               = ["+19205422725", "+19205422725"]
   open_hours_flow_id = genesyscloud_flow.mysimpleflow.id
   depends_on         = [
     genesyscloud_flow.mysimpleflow,

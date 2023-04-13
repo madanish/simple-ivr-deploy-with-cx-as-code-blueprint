@@ -1,5 +1,5 @@
 inboundCall:
-  name: SimpleFinancialIvr
+  name: SimpleFinancialIvrMat
   description: SimpleFinancialIvr
   division: Home
   startUpRef: "/inboundCall/menus/menu[Main Menu_10]"
