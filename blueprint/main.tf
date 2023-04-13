@@ -6,10 +6,7 @@ terraform {
   }
 }
 
-variable "my_ivr_did_number"{
-  type = string
-  description = "heres a description"
-}
+
 
 provider "genesyscloud" {
   sdk_debug = true
