@@ -6,6 +6,11 @@ terraform {
   }
 }
 
+variable "my_ivr_did_number"{
+  type = string
+  description = "heres a description"
+}
+
 provider "genesyscloud" {
   sdk_debug = true
 }
@@ -61,7 +66,7 @@ resource "genesyscloud_telephony_providers_edges_did_pool" "mygcv_number" {
 resource "genesyscloud_architect_ivr" "mysimple_ivr" {
   name               = "A simple IVR1"
   description        = "A sample IVR configuration"
-  dnis               = ["+19205422725", "+19205422725"]
+  dnis               = [var.my_ivr_did_number, var.my_ivr_did_number]
   open_hours_flow_id = genesyscloud_flow.mysimpleflow.id
   depends_on         = [
     genesyscloud_flow.mysimpleflow,
